@@ -5,11 +5,17 @@ const fs = require("fs");
 
 var express = require("express");
 var app = express();
+var cors = require("cors");
 app.use(express.json());
+app.use(cors());
 
 const PORT = 6000;
 
-app.get("/loxJava", async function (req, res) {
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.post("/loxJava", async function (req, res) {
   const output = await executeCommand(req.body.code);
   res.send(output);
 });
